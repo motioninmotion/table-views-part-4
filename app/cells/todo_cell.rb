@@ -6,6 +6,8 @@ class TodoCell < UITableViewCell
   def initWithStyle(style, reuseIdentifier: reuseIdentifier)
     super
 
+    self.accessoryType = UITableViewCellAccessoryDetailButton
+
     @text_label = UILabel.new
     @text_label.textAlignment = NSTextAlignmentCenter
     @text_label.translatesAutoresizingMaskIntoConstraints = false

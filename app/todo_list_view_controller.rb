@@ -4,6 +4,7 @@ class TodoListViewController < UITableViewController
 
     self.title = "Todos"
     tableView.registerClass(TodoCell, forCellReuseIdentifier: TodoCell::ID)
+    tableView.estimatedRowHeight = 80
   end
 
   def tableView(tableView, numberOfRowsInSection: section)
@@ -17,7 +18,15 @@ class TodoListViewController < UITableViewController
     cell
   end
 
-  def viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    tableView.estimatedRowHeight = 80
+  def tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    todo_vc = TodoViewController.new
+    todo_vc.todo = Todo.all[indexPath.row]
+    navigationController.pushViewController(todo_vc, animated: true)
+  end
+
+  def tableView(tableView, accessoryButtonTappedForRowWithIndexPath: indexPath)
+    todo_vc = TodoViewController.new
+    todo_vc.todo = Todo.all[indexPath.row]
+    navigationController.pushViewController(todo_vc, animated: true)
   end
 end
